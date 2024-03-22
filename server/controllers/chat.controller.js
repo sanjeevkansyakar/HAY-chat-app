@@ -94,8 +94,8 @@ const addMembers = asyncHandler(async (req, res, next) => {
     const { chatId, members } = req.body;
 
     // if no members
-    if (!members || members.length < 1)
-        return next(new ErrorHandler("Please provide members", 400));
+    // if (!members || members.length < 1)
+    //     return next(new ErrorHandler("Please provide members", 400));
 
     const chat = await Chat.findById(chatId);
 
