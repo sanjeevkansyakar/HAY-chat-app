@@ -12,8 +12,10 @@ import { ErrorHandler } from "../utils/utility.js";
 import { getOtherMember } from "../lib/helper.js";
 
 // create a new user, store cookie and save it to database
-const newUser = async (req, res) => {
+const newUser = asyncHandler(async (req, res, next) => {
     const { name, username, bio, password } = req.body;
+
+    if (!req.file) return next(new ErrorHandler("Please Upload Avatar", 400));
 
     const avatar = {
         public_id: "agdshd",
@@ -29,7 +31,7 @@ const newUser = async (req, res) => {
     });
 
     sendToken(res, user, 201, "User created successfully");
-};
+});
 
 // Login user and save cookie
 const login = asyncHandler(async (req, res, next) => {

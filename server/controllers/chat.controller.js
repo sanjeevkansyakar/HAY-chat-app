@@ -248,6 +248,9 @@ const sendAttachments = asyncHandler(async (req, res, next) => {
     if (files.length < 1)
         return next(new ErrorHandler("Please provide attachments", 400));
 
+    if (files.length > 5)
+        return next(new ErrorHandler("Files cant be more than 5", 400));
+
     // Upload file here
     const attachments = [];
 
